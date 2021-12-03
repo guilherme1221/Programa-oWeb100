@@ -1,0 +1,42 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Cadastrar Disciplina</title>
+
+
+<jsp:include page="header.jsp" />
+
+
+<script type="text/javascript" src="scripts.js" ></script>
+
+</head>
+<body>
+
+
+<%if(session.getAttribute("user") != null){ %>
+
+
+<h1>Inserir suas disciplinas</h1>
+
+
+<form action="ServletController?action=registerNow" method="post">
+Disciplina:<br>
+<input type="text" name="disciplines" required><br>
+Nota:<br>
+<input type="text" name="grade" onkeypress="return numeros(event);" required> <br>
+<input type="submit" value="Acrescentar disciplina">
+</form>
+
+<a href="ServletController?action=menu">Voltar para o menu </a>
+
+
+<%}else{ %>
+<h2>Primeiro faça o login</h2>
+<a href="autentica.jsp">Fazer Login</a>
+<%} %>
+
+</body>
+</html>
