@@ -1,0 +1,61 @@
+<%@page import="br.com.notas.model.*"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Listar Disciplinas</title>
+
+
+<jsp:include page="header.jsp" />
+
+</head>
+<body>
+
+
+<%if(session.getAttribute("user") != null){ %>
+
+
+<h1>Tabela das disciplinas inseridas</h1>
+
+
+<table border="1">
+
+<tr>
+<td>Disciplina</td>
+<td>Nota</td>
+<td>Resultado</td>
+</tr>
+
+
+<% List<Disciplines> discipline = (List<Disciplines>) request.getAttribute("check");
+for(Disciplines d : discipline){ %>
+<tr>
+<td><%= d.getDisciplines() %></td>
+<td><%= d.getGrade() %></td>
+
+
+<% if(d.getGrade() >= 5){ %>
+<td>Aprovado</td>
+<%}else{ %>
+<td>Reprovado</td>
+<%} %>
+</tr>
+<% }%>
+<tr><td>
+</td></tr>
+</table>
+
+
+<a href="ServletController?action=menu">Retornar para o menu </a>
+
+
+<%}else{ %>
+<h2>Primeiro realize o login</h2>
+<a href="autentica.jsp">Fazer Login</a>
+<%} %>
+
+</body>
+</html>
